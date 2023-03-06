@@ -24,7 +24,6 @@ function ContactCard() {
     let index = state!.contacts.findIndex(
       (ele:contactType) => ele.id === parseInt(String(userId))
     );
-    console.log(index)
     state!.contacts.splice(index,1)
     setState!({...state!})
     navigate('/')

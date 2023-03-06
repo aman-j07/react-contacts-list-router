@@ -11,7 +11,7 @@ const useGetContact = (contacts:contactType[],id:number) => {
     if (temp) {
       setContact(temp);
     }
-  }, [id]);
+  }, [id,contacts]);
 
   return contact;
 };

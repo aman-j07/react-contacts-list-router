@@ -8,18 +8,22 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import { useContext, useMemo, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { useContext,useState } from "react";
+import { NavLink, Outlet} from "react-router-dom";
 import { ContactsContext } from "../Home";
 
 function Landing() {
   const { state } = useContext(ContactsContext);
   const [search, setSearch] = useState("");
-  const filteredContacts = search === ""
-  ? state?.contacts
-  : state?.contacts.filter((ele) =>
-      ele.name.toLowerCase().includes(search.toLowerCase())
-    )
+
+  const filteredContacts =
+    search === ""
+      ? state?.contacts
+      : state?.contacts.filter((ele) =>
+          ele.name.toLowerCase().includes(search.toLowerCase())
+        );
+
+
   return (
     <div className="container">
       <aside className="sidebar">
@@ -37,7 +41,7 @@ function Landing() {
         <Divider />
         <Box p={1}>
           <List className="contactslist">
-            {(filteredContacts && filteredContacts.length > 0) ? (
+            {filteredContacts && filteredContacts.length > 0 ? (
               filteredContacts.map((ele: any) => (
                 <ListItem className="contactslist__item" key={ele.id}>
                   <NavLink

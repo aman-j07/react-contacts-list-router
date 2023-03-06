@@ -8,7 +8,6 @@ function ContactEdit() {
   const { state, setState } = useContext(ContactsContext);
   const { userId } = useParams();
   const contact = useGetContact(state!.contacts, parseInt(String(userId)));
-  console.log("editable contact", contact);
   const refFormObj = useRef<{
     name: null | HTMLInputElement;
     email: null | HTMLInputElement;

@@ -49,7 +49,8 @@ function Home() {
       element: <Landing />,
       children: [
         {path:'contacts/:userId',element:<ContactCard />},
-        {path:'contacts/edit/:userId',element:<ContactEdit/>}
+        {path:'contacts/edit/:userId',element:<ContactEdit/>},
+        {path:'/',element:<div><h2>Contacts App</h2><h4>Click on any contacts given on left side to view, update or delete</h4></div>}
       ]
     },
   ];
