@@ -39,13 +39,14 @@ function Home() {
         });
         setState({ ...state, contacts: users });
       });
+
   }, []);
   
 
   const routes: RouteObject[] = [
     {
       path: "/",
-      element: <Landing contacts={state.contacts} />,
+      element: <Landing />,
       children: [
         {path:'contacts/:userId',element:<ContactCard />},
         {path:'contacts/edit/:userId',element:<ContactEdit/>}
@@ -54,8 +55,6 @@ function Home() {
   ];
 
   const router = createBrowserRouter(routes);
-
-  console.log(state);
 
   return (
     <div className="container">

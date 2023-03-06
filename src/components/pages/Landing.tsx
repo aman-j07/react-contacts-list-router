@@ -1,22 +1,25 @@
 import { Search } from "@mui/icons-material";
 import {
-  Button,
   Divider,
   List,
   ListItem,
   ListItemText,
   TextField,
+  Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import { useContext, useMemo, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { contactType } from "../../types";
+import { ContactsContext } from "../Home";
 
-type propTypes = {
-  contacts: contactType[];
-};
-
-function Landing(props: propTypes) {
-  const { contacts } = { ...props };
+function Landing() {
+  const { state } = useContext(ContactsContext);
+  const [search, setSearch] = useState("");
+  const filteredContacts = search === ""
+  ? state?.contacts
+  : state?.contacts.filter((ele) =>
+      ele.name.toLowerCase().includes(search.toLowerCase())
+    )
   return (
     <div className="container">
       <aside className="sidebar">
@@ -25,19 +28,29 @@ function Landing(props: propTypes) {
             InputProps={{ startAdornment: <Search /> }}
             size="small"
             placeholder="Search"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
           />
-          <Button variant="outlined">Add</Button>
         </Box>
         <Divider />
         <Box p={1}>
           <List className="contactslist">
-            {contacts.map((ele: any) => (
-              <ListItem className="contactslist__item" key={ele.id}>
-                <NavLink className="contactslist__link txtlink" to={`contacts/${ele.id}`}>
-                  <ListItemText>{ele.name}</ListItemText>
-                </NavLink>
-              </ListItem>
-            ))}
+            {(filteredContacts && filteredContacts.length > 0) ? (
+              filteredContacts.map((ele: any) => (
+                <ListItem className="contactslist__item" key={ele.id}>
+                  <NavLink
+                    className="contactslist__link txtlink"
+                    to={`contacts/${ele.id}`}
+                  >
+                    <ListItemText>{ele.name}</ListItemText>
+                  </NavLink>
+                </ListItem>
+              ))
+            ) : (
+              <Typography>No results found</Typography>
+            )}
           </List>
         </Box>
       </aside>

@@ -14,7 +14,7 @@ body{
 .sidebar {
     max-width: 300px;
     background-color: #f7f7f7;
-    max-height: 100vh;
+    height: 100vh;
     overflow-y: scroll;
 }
 
