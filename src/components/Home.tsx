@@ -1,22 +1,26 @@
-import { DeleteRounded, Search } from "@mui/icons-material";
+import React, { createContext, useEffect, useState } from "react";
 import {
-  Box,
-  Button,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
-  ListItemText,
-  TextField,
-} from "@mui/material";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+  createBrowserRouter,
+  RouteObject,
+  RouterProvider,
+} from "react-router-dom";
+import { contactType } from "../types";
+import ContactCard from "./ContactCard";
+import ContactEdit from "./ContactEdit";
+import Landing from "./pages/Landing";
+
+type stateType={
+  contacts:contactType[],
+  editId:number
+}
+
+export const ContactsContext=createContext<{state:null|stateType,setState:null|React.Dispatch<React.SetStateAction<stateType>>}>({state:null,setState:null})
 
 function Home() {
-  const [state, setState] = useState({
-    formData: {},
+
+  const [state, setState] = useState<stateType>({
     contacts: [],
-    activeContact: {},
+    editId:-1,
   });
 
   useEffect(() => {
@@ -36,41 +40,28 @@ function Home() {
         setState({ ...state, contacts: users });
       });
   }, []);
+  
+
+  const routes: RouteObject[] = [
+    {
+      path: "/",
+      element: <Landing contacts={state.contacts} />,
+      children: [
+        {path:'contacts/:userId',element:<ContactCard />},
+        {path:'contacts/edit/:userId',element:<ContactEdit/>}
+      ]
+    },
+  ];
+
+  const router = createBrowserRouter(routes);
 
   console.log(state);
 
   return (
     <div className="container">
-      <main>
-        <aside className="sidebar">
-          <Box px={2} py={3} display="flex" gap={1}>
-            <TextField
-              InputProps={{ startAdornment: <Search /> }}
-              size="small"
-              placeholder="Search"
-            />
-            <Button variant="outlined">Add</Button>
-          </Box>
-          <Divider />
-          <Box p={1}>
-            <List>
-              {state.contacts.map((ele: any) => (
-                <ListItem key={ele.id}>
-                  <ListItemText>
-                    <Link className="txtlink" to="/">
-                      {ele.name}
-                    </Link>
-                  </ListItemText>
-                  <IconButton aria-label="delete">
-                    <DeleteRounded />
-                  </IconButton>
-                </ListItem>
-              ))}
-            </List>
-          </Box>
-        </aside>
-        <section className="details"></section>
-      </main>
+      <ContactsContext.Provider value={{state:state,setState:setState}}>
+      <RouterProvider router={router} />
+      </ContactsContext.Provider>
     </div>
   );
 }

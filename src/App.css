@@ -2,16 +2,61 @@ body{
     margin: 0;
 }
 
-.App {
-    text-align: center;
-}
-
 .txtlink {
     color: black;
     text-decoration: none;
 }
 
+.container {
+    display: flex;
+}
+
 .sidebar {
     max-width: 300px;
     background-color: #f7f7f7;
+    max-height: 100vh;
+    overflow-y: scroll;
+}
+
+.contactslist__item {
+    padding: 0 !important;
+}
+
+.contactslist__item .active {
+    background-color: #3a62f4;
+    color: white;
+}
+
+.contactslist__link {
+    flex-grow: 1;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+.details {
+    padding: 20px;
+}
+
+.contact {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+.contact__avatar {
+    max-height: 200px;
+    border: 1px solid #0000002e;
+    border-radius: 20px;
+}
+
+.contactedit__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.error {
+    border: 2px solid #ff0000ab !important;
+    border-radius: 4px;
 }
