@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 import {
   createBrowserRouter,
   RouteObject,
@@ -8,19 +8,22 @@ import { contactType } from "../types";
 import ContactCard from "./ContactCard";
 import ContactEdit from "./ContactEdit";
 import Landing from "./pages/Landing";
+import { Typography } from "@mui/material";
 
-type stateType={
-  contacts:contactType[],
-  editId:number
-}
+type stateType = {
+  contacts: contactType[];
+  editId: number;
+};
 
-export const ContactsContext=createContext<{state:null|stateType,setState:null|React.Dispatch<React.SetStateAction<stateType>>}>({state:null,setState:null})
+export const ContactsContext = createContext<{
+  state: null | stateType;
+  setState: null | React.Dispatch<React.SetStateAction<stateType>>;
+}>({ state: null, setState: null });
 
 function Home() {
-
   const [state, setState] = useState<stateType>({
     contacts: [],
-    editId:-1,
+    editId: -1,
   });
 
   useEffect(() => {
@@ -39,28 +42,40 @@ function Home() {
         });
         setState({ ...state, contacts: users });
       });
-
   }, []);
-  
 
   const routes: RouteObject[] = [
     {
       path: "/",
       element: <Landing />,
       children: [
-        {path:'contacts/:userId',element:<ContactCard />},
-        {path:'contacts/edit/:userId',element:<ContactEdit/>},
-        {path:'/',element:<div><h2>Contacts App</h2><h4>Click on any contacts given on left side to view, update or delete</h4></div>}
-      ]
+        { path: "contacts/:userId", element: <ContactCard /> },
+        { path: "contacts/:userId/edit", element: <ContactEdit /> },
+        {
+          path: "/",
+          element: (
+            <div>
+              <Typography fontSize={28} fontWeight={600}>Contacts List</Typography>
+              <Typography marginTop={1}>
+                Click on any contacts given on left side to view a contact
+              </Typography>
+            </div>
+          ),
+        },
+      ],
     },
   ];
+
+  const contextValue = useMemo(() => {
+    return { state: state, setState: setState };
+  }, [state]);
 
   const router = createBrowserRouter(routes);
 
   return (
     <div className="container">
-      <ContactsContext.Provider value={{state:state,setState:setState}}>
-      <RouterProvider router={router} />
+      <ContactsContext.Provider value={contextValue}>
+        <RouterProvider router={router} />
       </ContactsContext.Provider>
     </div>
   );

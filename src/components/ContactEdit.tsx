@@ -23,7 +23,7 @@ function ContactEdit() {
   const updateContact = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let phone = refFormObj.current.phone!.value;
-    if (phone.match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)) {
+    if (phone.match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/)) {
       refFormObj.current.phone?.classList.remove("error");
     } else {
       refFormObj.current.phone?.classList.add("error");
@@ -39,7 +39,7 @@ function ContactEdit() {
       email:refFormObj.current.email!.value
     };
     setState!({ ...state!});
-    navigate(`/contacts/${userId}/`)
+    navigate(`/contacts/${userId}`)
   };
 
   return (

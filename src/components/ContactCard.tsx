@@ -1,7 +1,7 @@
 import { StarBorder } from "@mui/icons-material";
 import { Button, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useContext, useEffect, useState } from "react";
+import { useContext,  } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useGetContact from "../hooks/useGetContact";
 import { contactType } from "../types";
@@ -17,7 +17,7 @@ function ContactCard() {
 
   const editContact=()=>{
     setState!({...state!,editId:parseInt(String(userId))})
-    navigate(`/contacts/edit/${userId}`)
+    navigate(`/contacts/${userId}/edit`)
   }
 
   const deleteContact=()=>{

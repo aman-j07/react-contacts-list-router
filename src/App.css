@@ -1,62 +1,81 @@
-body{
-    margin: 0;
+body {
+  margin: 0;
 }
 
 .txtlink {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
 .container {
-    display: flex;
+  display: flex;
 }
 
 .sidebar {
-    max-width: 300px;
-    background-color: #f7f7f7;
-    height: 100vh;
-    overflow-y: scroll;
+  max-width: 300px;
+  min-width: 260px;
+  background-color: #f7f7f7;
+  max-height: 100vh;
+  overflow-y: scroll;
+  position: relative;
 }
 
-.contactslist__item {
-    padding: 0 !important;
+.sidebar .search-container {
+    position: sticky;
+    top: 0;
+    background-color: whitesmoke;
+    z-index: 10;
+    max-height: 88px;
+    border-bottom: 1px solid #00000030;
 }
 
-.contactslist__item .active {
-    background-color: #3a62f4;
-    color: white;
+.contacts-list-highlight {
+    position: fixed;
+    top: 95px;
+    bottom: 10px;
+    width: 265px;
+    left: 10px;
 }
 
-.contactslist__link {
-    flex-grow: 1;
-    padding: 6px;
-    border-radius: 5px;
+.contacts-list__item {
+  padding: 0 !important;
+}
+
+.contacts-list__item .active {
+  background-color: #3a62f4;
+  color: white;
+}
+
+.contacts-list__link {
+  flex-grow: 1;
+  padding: 6px;
+  border-radius: 5px;
 }
 
 .details {
-    padding: 20px;
+  padding: 20px;
 }
 
 .contact {
-    display: flex;
-    align-items: start;
-    gap: 20px;
-    padding: 10px 20px;
+  display: flex;
+  align-items: start;
+  gap: 20px;
+  padding: 10px 20px;
 }
 
 .contact__avatar {
-    max-height: 200px;
-    border: 1px solid #0000002e;
-    border-radius: 20px;
+  max-height: 200px;
+  border: 1px solid #0000002e;
+  border-radius: 20px;
 }
 
 .contactedit__form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .error {
-    border: 2px solid #ff0000ab !important;
-    border-radius: 4px;
+  border: 2px solid #ff0000ab !important;
+  border-radius: 4px;
 }
