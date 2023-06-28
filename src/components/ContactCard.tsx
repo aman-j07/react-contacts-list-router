@@ -1,33 +1,31 @@
 import { StarBorder } from "@mui/icons-material";
 import { Button, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useContext,  } from "react";
+import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useGetContact from "../hooks/useGetContact";
 import { contactType } from "../types";
 import { ContactsContext } from "./Home";
 
-
-
 function ContactCard() {
-  const {state,setState} = useContext(ContactsContext);
-  const navigate=useNavigate()
-  const {userId} = useParams();
-  const contact=useGetContact(state!.contacts,parseInt(String(userId)))
+  const { state, setState } = useContext(ContactsContext);
+  const navigate = useNavigate();
+  const { userId } = useParams();
+  const contact = useGetContact(state!.contacts, parseInt(String(userId)));
 
-  const editContact=()=>{
-    setState!({...state!,editId:parseInt(String(userId))})
-    navigate(`/contacts/${userId}/edit`)
-  }
+  const editContact = () => {
+    setState!({ ...state!, editId: parseInt(String(userId)) });
+    navigate(`/contacts/${userId}/edit`);
+  };
 
-  const deleteContact=()=>{
+  const deleteContact = () => {
     let index = state!.contacts.findIndex(
-      (ele:contactType) => ele.id === parseInt(String(userId))
+      (ele: contactType) => ele.id === parseInt(String(userId))
     );
-    state!.contacts.splice(index,1)
-    setState!({...state!})
-    navigate('/')
-  }
+    state!.contacts.splice(index, 1);
+    setState!({ ...state! });
+    navigate("/");
+  };
 
   return (
     <div className="contact">
@@ -53,7 +51,12 @@ function ContactCard() {
               <Button onClick={editContact} variant="outlined" size="small">
                 Edit
               </Button>
-              <Button onClick={deleteContact} variant="outlined" size="small" color="error">
+              <Button
+                onClick={deleteContact}
+                variant="outlined"
+                size="small"
+                color="error"
+              >
                 Delete
               </Button>
             </Box>

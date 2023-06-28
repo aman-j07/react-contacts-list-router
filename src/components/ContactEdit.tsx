@@ -1,5 +1,5 @@
 import { Button, TextField } from "@mui/material";
-import React, { useContext,useRef,} from "react";
+import React, { useContext, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useGetContact from "../hooks/useGetContact";
 import { ContactsContext } from "./Home";
@@ -18,7 +18,7 @@ function ContactEdit() {
     phone: null,
   });
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const updateContact = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,11 +35,11 @@ function ContactEdit() {
     state!.contacts[index] = {
       ...contact!,
       name: refFormObj.current.name!.value,
-      phone:refFormObj.current.phone!.value,
-      email:refFormObj.current.email!.value
+      phone: refFormObj.current.phone!.value,
+      email: refFormObj.current.email!.value,
     };
-    setState!({ ...state!});
-    navigate(`/contacts/${userId}`)
+    setState!({ ...state! });
+    navigate(`/contacts/${userId}`);
   };
 
   return (

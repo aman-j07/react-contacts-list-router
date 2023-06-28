@@ -55,7 +55,9 @@ function Home() {
           path: "/",
           element: (
             <div>
-              <Typography fontSize={28} fontWeight={600}>Contacts List</Typography>
+              <Typography fontSize={28} fontWeight={600}>
+                Contacts List
+              </Typography>
               <Typography marginTop={1}>
                 Click on any contacts given on left side to view a contact
               </Typography>

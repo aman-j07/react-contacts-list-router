@@ -21,20 +21,20 @@ body {
 }
 
 .sidebar .search-container {
-    position: sticky;
-    top: 0;
-    background-color: whitesmoke;
-    z-index: 10;
-    max-height: 88px;
-    border-bottom: 1px solid #00000030;
+  position: sticky;
+  top: 0;
+  background-color: whitesmoke;
+  z-index: 10;
+  max-height: 88px;
+  border-bottom: 1px solid #00000030;
 }
 
 .contacts-list-highlight {
-    position: fixed;
-    top: 95px;
-    bottom: 10px;
-    width: 265px;
-    left: 10px;
+  position: fixed;
+  top: 95px;
+  bottom: 10px;
+  width: 265px;
+  left: 10px;
 }
 
 .contacts-list__item {
