@@ -14,7 +14,6 @@
     "@types/node": "^16.18.14",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "husky": "^8.0.3",
     "intro.js-react": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -29,9 +28,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "husky":{
-    "hooks":{
-      "pre-commit":"echo pre-ommit run && prettier --write . && git add ."
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo pre-ommit run && prettier --write . && git add ."
     }
   },
   "eslintConfig": {
@@ -51,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "husky": "^8.0.3"
   }
 }
