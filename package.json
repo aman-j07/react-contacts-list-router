@@ -30,7 +30,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo pre-ommit run && prettier --write . && git add ."
+      "pre-commit": "echo pre-commit run && prettier --write . && git add ."
     }
   },
   "eslintConfig": {
